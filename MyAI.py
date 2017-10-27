@@ -32,8 +32,12 @@ class MyAI ( Agent ):
         # ======================================================================
         # YOUR CODE BEGINS
         # ======================================================================
+        self.current = (1,1) # Current position
+        self.safe_unvisited = {(1,1)} # A set of unvisited safe nodes
+        self.X = None # Limit of x axis
+        self.Y = None # Limit of y axis
         
-        pass
+        
         # ======================================================================
         # YOUR CODE ENDS
         # ======================================================================
@@ -119,9 +123,35 @@ class MyAI ( Agent ):
                         map[k] = 1;
             elif sensor == 6 :
                 self.map[(x,y)] = 6;
+    
 
 
-
+#################################################################
+    def _dijsktra(self):# find a shortest safe path from start to destination.
+        allSafeNodes = self.safe #Graph in pseudocode
+        distance = {}
+        direction = {}
+        haveSeen = {}
+        
+        for each in allSafeNodes:
+            distance[each] = float('inf')
+            direction[each] = None
+            
+        distance[self.current]=0
+       
+        while len(allSafeNodes) != 0:
+            u = sorted(Q, key = lambda x: distance[x])[0]
+            allSafeNodes.remove(u) 
+            
+            for xaixs,yaixs in allSafeNodes:
+                neighbors.append((xaixs+1,yaixs))
+                neighbors.append((xaixs,yaixs+1))
+                neighbors.append((xaixs-1,yaixs))
+                neighbors.append((xaixs,yaixs-1))
+            for each, direct in neighbors:
+                if each in allSafeNodes:
+            
+  
 
     # ======================================================================
     # YOUR CODE ENDS
